@@ -45,7 +45,7 @@ function setup()
   ground.addImage("ground",groundImage);
   ground.x = ground.width /2;
   
-  invisibleGround = createSprite(width/2,height-10,600,10);
+  invisibleGround = createSprite(width/2,height-50,600,10);
   invisibleGround.visible = false
   score=0
   cloudGroup=createGroup()
@@ -136,15 +136,15 @@ function reset(){
 }
 function spawnCloud(){
   if(frameCount%80===0){
-  cloud =createSprite(600,20,30,50)
-    cloud.y= Math.round(random(20,100))
+  cloud =createSprite(width,200,30,50)
+    cloud.y= Math.round(random(100,200))
   cloud.addImage(cloudImg)
   cloud.scale = 0.5
   cloud.velocityX = -2
   console.log(cloud.depth)
     cloud.depth=trex.depth
     trex.depth+=1
-    cloud.lifetime = 300
+    cloud.lifetime = width/cloud.velocityX
     cloudGroup.add(cloud)
   }
   
@@ -152,7 +152,7 @@ function spawnCloud(){
 
 function spawnObstacle(){
   if(frameCount%80===0){
- obstacle =createSprite(600,160,30,50) 
+ obstacle =createSprite(width,height-50,30,50) 
     var r = Math.round(random(1,6))
     switch(r){               
       case 1:obstacle.addImage(obstacle1);
@@ -172,7 +172,7 @@ function spawnObstacle(){
     }
     obstacle.scale=0.5
   obstacle.velocityX = -(4+3*score/100);            
-     obstacle.lifetime = 300
+     obstacle.lifetime = width/obstacle.velocityX
     obstacleGroup.add(obstacle)
   
   }
