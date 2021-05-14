@@ -30,10 +30,10 @@ function preload()
 
 function setup() 
 {
-  createCanvas(600, 200);
+  createCanvas(windowWidth , windowHeight);
 
   //create a trex sprite
-  trex = createSprite(50,160,20,50);
+  trex = createSprite(50,height-70,20,50);
   trex.addAnimation("running", trex_running);
   trex.addAnimation("collided", trex_collided);
   trex.scale = 0.5;
@@ -41,11 +41,11 @@ function setup()
   trex.setCollider("rectangle",0,0,300,trex.height)
 
   //create a ground sprite
-  ground = createSprite(200,180,400,20);
+  ground = createSprite(width/2,height-70,400,20);
   ground.addImage("ground",groundImage);
   ground.x = ground.width /2;
   
-  invisibleGround = createSprite(300,190,600,10);
+  invisibleGround = createSprite(width/2,height-10,600,10);
   invisibleGround.visible = false
   score=0
   cloudGroup=createGroup()
@@ -70,9 +70,10 @@ function draw()
       score=score+Math.round(frameRate()/60)
     ground.velocityX = -(4+3*score/100);
 
-         if (keyDown("UP_ARROW")&&trex.y>=161) 
+         if ((keyDown("UP_ARROW")||touches.length>0)&&trex.y>=161) 
       {
         trex.velocityY = -10;
+        touches=[]
        soundJump.play()
       }
 
