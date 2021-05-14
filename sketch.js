@@ -41,7 +41,7 @@ function setup()
   trex.setCollider("rectangle",0,0,300,trex.height)
 
   //create a ground sprite
-  ground = createSprite(width/2,height-70,400,20);
+  ground = createSprite(width/2,height-70,width,20);
   ground.addImage("ground",groundImage);
   ground.x = ground.width /2;
   
@@ -152,7 +152,7 @@ function spawnCloud(){
 
 function spawnObstacle(){
   if(frameCount%80===0){
- obstacle =createSprite(width,height-50,30,50) 
+ obstacle =createSprite(width,height-40,30,50) 
     var r = Math.round(random(1,6))
     switch(r){               
       case 1:obstacle.addImage(obstacle1);
